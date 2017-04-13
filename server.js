@@ -59,7 +59,7 @@ app.get('/api', function apiIndex(req, res) {
       {
         method: "GET",
         path: "/api/profile",
-        description: "A little story about myself"
+        description: "A little story about myself",
         name: 'Will Fong'
       },
       {
@@ -79,6 +79,7 @@ app.get('/api', function apiIndex(req, res) {
 app.get('/api/profile', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
+  res.json({
     woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
     message: 'Welcome to my profile.',
     documentationUrl: 'https://github.com/promethwill88/express-personal-api/README.md',
@@ -121,14 +122,15 @@ app.get('/api/profile', function apiIndex(req, res) {
         status: 'own'
       }
     ]
+  });    
 });
 
-app.get('/api/projects', function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
-    name: 'geoquakes',
-    
-});
+// app.get('/api/projects', function apiIndex(req, res) {
+//   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+//   // It would be seriously overkill to save any of this to your database.
+//     name: 'geoquakes',
+
+// });
 
 
         
