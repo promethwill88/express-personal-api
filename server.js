@@ -64,13 +64,23 @@ app.get('/api', function apiIndex(req, res) {
       },
       {
         method: "GET",
-        path: "/api/projects",
-        description: "A little story about myself"
+        path: "/api/toys",
+        description: "Wishlist of toys"
+      },
+      {
+        method: "GET",
+        path: "/api/toys/:id",
+        description: "Get one specific wishlist item"
       },
       {
         method: "POST",
-        path: "/api/moviestowatch",
-        description: "E.g. Add movies to watch"
+        path: "/api/toys",
+        description: "Add new item to wishlist"
+      },
+      {
+        method: "DELETE",
+        path: "/api/toys",
+        description: "Delete an item to wishlist"
       }
     ]
   })
@@ -92,45 +102,119 @@ app.get('/api/profile', function apiIndex(req, res) {
       {
         name: 'Mila 1',
         type: 'car',
+        usage: 'road',
+        country: 'Germany',
         year: 2004,
         brand: 'BMW',
         model: '325i',
-        status: 'sold'
+        color: 'Oxford Green',
+        own: false
       },
       {
         name: 'Mila 2',
         type: 'car',
+        usage: 'road',
+        country: 'Germany',
         year: 2006,
         brand: 'BMW',
         model: '325ci',
-        status: 'sold'
+        color: 'Jet Black'
+        own: false
       },
       {
         name: 'Audrey',
         type: 'car',
+        usage: 'road',
+        country: 'Germany',
         year: 2004,
         brand: 'BMW',
         model: 'M3',
-        status: 'own'
+        color: 'Silver Gray',
+        own: true
       },
       {
         name: 'Michelle',
         type: 'motorbike',
+        usage: 'road',
+        country: 'Britan',
         year: 2014,
         brand: 'Triumph',
+        color: 'Matte Graphite',
         model: 'Street Triple R',
-        status: 'own'
+        own: true
       }
     ]
   });    
 });
 
-// app.get('/api/projects', function apiIndex(req, res) {
-//   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-//   // It would be seriously overkill to save any of this to your database.
-//     name: 'geoquakes',
+app.get('/api/toys', function apiIndex(req, res) {
+  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+  // It would be seriously overkill to save any of this to your database.
+  {
+    _id: 0,
+    name: '',
+    type: 'car',
+    usage: 'race',
+    country: 'Britan',
+    year: 2008,
+    brand: 'McLaren',
+    model: 'MP4-22',
+    color: 'Silver',
+    own: false
+  },
+  {
+    _id: 1,
+    name: '',
+    type: 'car',
+    usage: 'road',
+    country: 'Italy',
+    year: 1987,
+    brand: 'Ferrari',
+    model: 'F40',
+    color: 'Rosso Corsa',
+    own: false
+  },
+  {
+    _id: 2,
+    name: '',
+    type: 'car',
+    usage: 'road',
+    country: 'Britan',
+    year: 1961,
+    brand: 'Jaguar',
+    model: 'E-Type',
+    color: 'British Racing Green',
+    own: false
+  },
+  {
+    _id: 3,
+    name: '',
+    type: 'motorbike',
+    usage: 'road',
+    country: 'Italy',
+    year: 2008,
+    brand: 'Ducati',
+    model: '1299 Panigale R',
+    color: 'Ducati Red',
+    own: false
+  },
+  {
+    _id: 4,
+    name: '',
+    type: 'car',
+    usage: 'race'
+    country: 'Italy',
+    year: 1966,
+    brand: 'Ferrari',
+    model: '330 P3',
+    color: 'Rosso Corsa',
+    own: false
+  }
 
-// });
+
+
+
+});
 
 
         
