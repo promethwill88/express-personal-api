@@ -1,4 +1,4 @@
-# <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Personal API - Weekend Lab
+# <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Personal API
 
 It's time to have some fun and play with the technologies you've learned in the past week. Your goal is to build a API about yourself. Your API will incorporate:
 * Well-documented **JSON API** Endpoints
@@ -15,6 +15,8 @@ Before we start coding, our first goal together is to configure our application 
 
 Follow the instructions here: [Deploying Express Apps to Heroku](https://github.com/SF-WDI-LABS/shared_modules/blob/master/how-to/heroku-mean-stack-deploy.md)
 
+**Note**: This is a general set of instructions for deploying to Heroku. You might want to bookmark it for the next time! We have set up a lot of this repo to be ready to deploy already, so you don't *need* to do all of the steps. You **DO** need to **follow steps 1-4, steps 6-7, and steps 10-11**.
+
 As you continue to work on this project, you'll need to remember to push your changes to heroku (just like you would with github!):
 
 ```bash
@@ -24,7 +26,7 @@ git push heroku master
 heroku open
 ```
 
-It's common for code to break "in production" (broken links, different environment, missing dependenies...), when worked in development so do your best to debug! Let us know if you get stuck.
+It's common for code to break "in production" (broken links, different environment, missing dependenies...), when worked it in development, so do your best to debug! Let us know if you get stuck.
 
 ## Part 1. Personal API
 Now that we're deployed, it's time to start coding your "personal" api!
@@ -36,7 +38,7 @@ Now that we're deployed, it's time to start coding your "personal" api!
     - You must document your API endpoints. We really want to know *how* to use your API! And for starters, we need to know what endpoints exist! (Do this step first! _Plan plan plan!_)
     - One cool way to do this is to create an endpoint at `/api` that describes all the available endpoints. We've set you up with an example in `server.js`. Make sure to update it to fill it in with your own information!
         + Here's a good example student `/api` endpoint:
-        + 
+        +
         <img width="500" alt="example api documentation" src="https://cloud.githubusercontent.com/assets/1489337/22841538/dc0b7f26-ef86-11e6-9a56-013bbe51792a.png">
         + See the [Open API Initiative](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#paths-object-example) for what this looks like in practice.
 - **A Profile Endpoint** (`/api/profile`) that responds with *hard-coded* data:
@@ -68,7 +70,7 @@ Now that we're deployed, it's time to start coding your "personal" api!
         * Wish list (e.g. `gifts` or `wishes`)
             - `_id`, description, price, amazonLink
 
-All API Endpoints must return JSON. 
+All API Endpoints must return JSON.
 
 <!--- You will be able to see if your API is up and running because [this api aggregator](https://api-aggregator.herokuapp.com/) will be able to consume your data. Check back on it to see if it's working for your code! Note: This won't be set up until you send your instructors the name of your Heroku app! --->
 
