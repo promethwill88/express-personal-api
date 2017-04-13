@@ -78,6 +78,11 @@ app.get('/api', function apiIndex(req, res) {
         description: "Add new item to wishlist"
       },
       {
+        method: "PUT",
+        path: "/api/toys",
+        description: "Update an item to wishlist"
+      },
+      {
         method: "DELETE",
         path: "/api/toys",
         description: "Delete an item to wishlist"
@@ -98,7 +103,7 @@ app.get('/api/profile', function apiIndex(req, res) {
     githubProfileImage: 'https://avatars2.githubusercontent.com/u/7003367?v=3&s=400',
     personalSiteLink: 'http://willfong.me/',
     currentCity: 'San Francisco',
-    toys: [
+    garage: [
       {
         name: 'Mila 1',
         type: 'car',
@@ -147,9 +152,51 @@ app.get('/api/profile', function apiIndex(req, res) {
   });    
 });
 
-app.get('/api/toys', function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
+// Get all toys
+app.get('/api/toys', function(req, res){
+  db.Toys.find(function(err, toys){
+    if(err){
+      return console.log('index error: ' + err);
+    }
+  });
+});
+
+// Get one specific toy
+app.get('/api/toys/:id', function(req, res){
+  db.Toys.findOne({ _id: req.params.id }, function(err, toys){
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    res.json(toys);
+  });
+});
+
+// Create one toy
+app.post('/api/toys', function(req, res){
+  // Create new toy with form data (`req.body`)
+  console.log('toys create', req.body);
+  let newToy = new db.Toys(req.body);
+  newToy.save(function (err, savedToy){
+    res.json(savedToy);
+  });
+});
+
+// Delete a toy
+app.delete('/api/books/:id', function(req, res){
+  // Get toy ID from url params ('req.params')
+  console.log('books delete', req.params);
+  let toysId = req.params.id;
+  // Find index of the toy we want to remove
+  db.Toys.findOneAndRemove({ _id: toyId }, function(err, deletedToy){
+    res.json(deletedToy);
+  });
+});
+
+
+// Data
+
+let toys = [
   {
     _id: 0,
     name: '',
@@ -210,14 +257,7 @@ app.get('/api/toys', function apiIndex(req, res) {
     color: 'Rosso Corsa',
     own: false
   }
-
-
-
-
-});
-
-
-        
+];
 
 /**********
  * SERVER *
