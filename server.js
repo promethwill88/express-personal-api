@@ -156,6 +156,7 @@ app.get('/api/toys', function(req, res){
     if(err){
       return console.log('index error: ' + err);
     }
+    res.json(toy);
   });
 });
 
@@ -180,7 +181,7 @@ app.post('/api/toys', function(req, res){
   });
 });
 
-// Update specific toy by id
+//Update specific toy by id
 // app.push('/api/toys/:id', function(req, res){
 //   db.ToyModel.findOne({ _id: req.params.id }, function(err, toy){
 //     if(err){
