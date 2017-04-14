@@ -1,7 +1,7 @@
 let mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-let toySchema = new Schema({
+let ToySchema = new Schema({
     name: String,
     type: String,
     usage: String,
@@ -13,6 +13,6 @@ let toySchema = new Schema({
 	own: Boolean
 });
 
-let ToyModel = mongoose.model('Toy', toySchema);
+let ToyModel = mongoose.model('Toy', ToySchema);
 
-module.exports = toyModel;
+module.exports = ToyModel;

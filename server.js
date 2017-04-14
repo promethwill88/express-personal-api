@@ -152,7 +152,7 @@ app.get('/api/profile', function apiIndex(req, res) {
 
 // Get all toys
 app.get('/api/toys', function(req, res){
-  db.Toy.find(function(err, toy){
+  db.ToyModel.find(function(err, toy){
     if(err){
       return console.log('index error: ' + err);
     }
@@ -161,7 +161,7 @@ app.get('/api/toys', function(req, res){
 
 // Get toy by id
 app.get('/api/toys/:id', function(req, res){
-  db.Toy.findOne({ _id: req.params.id }, function(err, toy){
+  db.ToyModel.findOne({ _id: req.params.id }, function(err, toy){
     if(err){
       res.status(500).send(err);
       return;
@@ -174,22 +174,22 @@ app.get('/api/toys/:id', function(req, res){
 app.post('/api/toys', function(req, res){
   // Create new toy with form data (`req.body`)
   console.log('toy create', req.body);
-  let newToy = new db.Toy(req.body);
+  let newToy = new db.ToyModel(req.body);
   newToy.save(function (err, savedToy){
     res.json(savedToy);
   });
 });
 
 // Update specific toy by id
-app.push('/api/toys/:id', function(req, res){
-  db.Toy.findOne({ _id: req.params.id }, function(err, toy){
-    if(err){
-      res.status(500).send(err);
-      return;
-    }
-    res.json(toy);
-  });
-});
+// app.push('/api/toys/:id', function(req, res){
+//   db.ToyModel.findOne({ _id: req.params.id }, function(err, toy){
+//     if(err){
+//       res.status(500).send(err);
+//       return;
+//     }
+//     res.json(toy);
+//   });
+// });
 
 // Delete a toy
 app.delete('/api/toys/:id', function(req, res){
@@ -197,76 +197,11 @@ app.delete('/api/toys/:id', function(req, res){
   console.log('books delete', req.params);
   let toyId = req.params.id;
   // Find index of the toy we want to remove
-  db.Toy.findOneAndRemove({ _id: toyId }, function(err, deletedToy){
+  db.ToyModel.findOneAndRemove({ _id: toyId }, function(err, deletedToy){
     res.json(deletedToy);
   });
 });
 
-
-// Data
-
-// let toy = [
-//   {
-//     _id: 0,
-//     name: '',
-//     type: 'car',
-//     usage: 'race',
-//     country: 'Britan',
-//     year: 2008,
-//     brand: 'McLaren',
-//     model: 'MP4-22',
-//     color: 'Silver',
-//     own: false
-//   },
-//   {
-//     _id: 1,
-//     name: '',
-//     type: 'car',
-//     usage: 'road',
-//     country: 'Italy',
-//     year: 1987,
-//     brand: 'Ferrari',
-//     model: 'F40',
-//     color: 'Rosso Corsa',
-//     own: false
-//   },
-//   {
-//     _id: 2,
-//     name: '',
-//     type: 'car',
-//     usage: 'road',
-//     country: 'Britan',
-//     year: 1961,
-//     brand: 'Jaguar',
-//     model: 'E-Type',
-//     color: 'British Racing Green',
-//     own: false
-//   },
-//   {
-//     _id: 3,
-//     name: '',
-//     type: 'motorbike',
-//     usage: 'road',
-//     country: 'Italy',
-//     year: 2008,
-//     brand: 'Ducati',
-//     model: '1299 Panigale R',
-//     color: 'Ducati Red',
-//     own: false
-//   },
-//   {
-//     _id: 4,
-//     name: '',
-//     type: 'car',
-//     usage: 'race'
-//     country: 'Italy',
-//     year: 1966,
-//     brand: 'Ferrari',
-//     model: '330 P3',
-//     color: 'Rosso Corsa',
-//     own: false
-//   }
-// ];
 
 /**********
  * SERVER *
