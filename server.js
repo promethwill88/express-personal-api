@@ -92,8 +92,6 @@ app.get('/api', function apiIndex(req, res) {
 });
 
 app.get('/api/profile', function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
   res.json({
     woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
     message: 'Welcome to my profile.',
@@ -123,7 +121,7 @@ app.get('/api/profile', function apiIndex(req, res) {
         year: 2006,
         brand: 'BMW',
         model: '325ci',
-        color: 'Jet Black'
+        color: 'Jet Black',
         own: false
       },
       {
@@ -154,41 +152,52 @@ app.get('/api/profile', function apiIndex(req, res) {
 
 // Get all toys
 app.get('/api/toys', function(req, res){
-  db.Toys.find(function(err, toys){
+  db.Toy.find(function(err, toy){
     if(err){
       return console.log('index error: ' + err);
     }
   });
 });
 
-// Get one specific toy
+// Get toy by id
 app.get('/api/toys/:id', function(req, res){
-  db.Toys.findOne({ _id: req.params.id }, function(err, toys){
+  db.Toy.findOne({ _id: req.params.id }, function(err, toy){
     if(err){
       res.status(500).send(err);
       return;
     }
-    res.json(toys);
+    res.json(toy);
   });
 });
 
-// Create one toy
+// Create toy
 app.post('/api/toys', function(req, res){
   // Create new toy with form data (`req.body`)
-  console.log('toys create', req.body);
-  let newToy = new db.Toys(req.body);
+  console.log('toy create', req.body);
+  let newToy = new db.Toy(req.body);
   newToy.save(function (err, savedToy){
     res.json(savedToy);
   });
 });
 
+// Update specific toy by id
+app.push('/api/toys/:id', function(req, res){
+  db.Toy.findOne({ _id: req.params.id }, function(err, toy){
+    if(err){
+      res.status(500).send(err);
+      return;
+    }
+    res.json(toy);
+  });
+});
+
 // Delete a toy
-app.delete('/api/books/:id', function(req, res){
+app.delete('/api/toys/:id', function(req, res){
   // Get toy ID from url params ('req.params')
   console.log('books delete', req.params);
-  let toysId = req.params.id;
+  let toyId = req.params.id;
   // Find index of the toy we want to remove
-  db.Toys.findOneAndRemove({ _id: toyId }, function(err, deletedToy){
+  db.Toy.findOneAndRemove({ _id: toyId }, function(err, deletedToy){
     res.json(deletedToy);
   });
 });
@@ -196,68 +205,68 @@ app.delete('/api/books/:id', function(req, res){
 
 // Data
 
-let toys = [
-  {
-    _id: 0,
-    name: '',
-    type: 'car',
-    usage: 'race',
-    country: 'Britan',
-    year: 2008,
-    brand: 'McLaren',
-    model: 'MP4-22',
-    color: 'Silver',
-    own: false
-  },
-  {
-    _id: 1,
-    name: '',
-    type: 'car',
-    usage: 'road',
-    country: 'Italy',
-    year: 1987,
-    brand: 'Ferrari',
-    model: 'F40',
-    color: 'Rosso Corsa',
-    own: false
-  },
-  {
-    _id: 2,
-    name: '',
-    type: 'car',
-    usage: 'road',
-    country: 'Britan',
-    year: 1961,
-    brand: 'Jaguar',
-    model: 'E-Type',
-    color: 'British Racing Green',
-    own: false
-  },
-  {
-    _id: 3,
-    name: '',
-    type: 'motorbike',
-    usage: 'road',
-    country: 'Italy',
-    year: 2008,
-    brand: 'Ducati',
-    model: '1299 Panigale R',
-    color: 'Ducati Red',
-    own: false
-  },
-  {
-    _id: 4,
-    name: '',
-    type: 'car',
-    usage: 'race'
-    country: 'Italy',
-    year: 1966,
-    brand: 'Ferrari',
-    model: '330 P3',
-    color: 'Rosso Corsa',
-    own: false
-  }
-];
+// let toy = [
+//   {
+//     _id: 0,
+//     name: '',
+//     type: 'car',
+//     usage: 'race',
+//     country: 'Britan',
+//     year: 2008,
+//     brand: 'McLaren',
+//     model: 'MP4-22',
+//     color: 'Silver',
+//     own: false
+//   },
+//   {
+//     _id: 1,
+//     name: '',
+//     type: 'car',
+//     usage: 'road',
+//     country: 'Italy',
+//     year: 1987,
+//     brand: 'Ferrari',
+//     model: 'F40',
+//     color: 'Rosso Corsa',
+//     own: false
+//   },
+//   {
+//     _id: 2,
+//     name: '',
+//     type: 'car',
+//     usage: 'road',
+//     country: 'Britan',
+//     year: 1961,
+//     brand: 'Jaguar',
+//     model: 'E-Type',
+//     color: 'British Racing Green',
+//     own: false
+//   },
+//   {
+//     _id: 3,
+//     name: '',
+//     type: 'motorbike',
+//     usage: 'road',
+//     country: 'Italy',
+//     year: 2008,
+//     brand: 'Ducati',
+//     model: '1299 Panigale R',
+//     color: 'Ducati Red',
+//     own: false
+//   },
+//   {
+//     _id: 4,
+//     name: '',
+//     type: 'car',
+//     usage: 'race'
+//     country: 'Italy',
+//     year: 1966,
+//     brand: 'Ferrari',
+//     model: '330 P3',
+//     color: 'Rosso Corsa',
+//     own: false
+//   }
+// ];
 
 /**********
  * SERVER *
